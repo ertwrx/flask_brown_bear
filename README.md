@@ -13,7 +13,7 @@ Before you begin, ensure you have met the following requirements:
   ```bash
   pip install flask
 
-#Features
+## Features
 1. Interactive Buttons
 Click on buttons to explore different pages of the book, each with its unique image and sound effect.
 
@@ -24,32 +24,33 @@ The app provides fullscreen images corresponding to the selected book page, crea
 Enjoy sound effects associated with each page, enhancing the storytelling experience.
 
 
-#Usage
-Running the Flask App
+## Usage
+**Running the Flask App**
 To run the Flask Brown Bear app, follow these steps:
-
 
 1. Clone the repository.
 
 2. Navigate to the project directory:
 
-	cd flask_brown_bear
+ ```bash
+ cd flask_brown_bear
 
 3. Run the Flask app using Python3:
 
-	python3 app.py
+ ```bash	
+ python3 app.py
 
 4. Open the app in your web browser at http://127.0.0.1:5000/.
 
-#Author
+## Author
 Bill Martin Jr. / Pictures by Eric Carle
 
-#Dedication
+##Dedication
 This project is dedicated to my son, Chace, who loves "Brown Bear, Brown Bear, What Do You See?" This app is a small tribute to one of his favorite books.
 
-#Contributors
+##Contributors
 Contributions are welcome! If you'd like to add cool features or improvements to the Flask Brown Bear app.
 
-#Disclaimer
+##Disclaimer
 This project is created for coding and scripting studies only. No copyright infringement is intended. The content and images used in this application are based on "Brown Bear, Brown Bear, What Do You See?" by Bill Martin Jr. and Eric Carle. All rights to the original work belong to the respective copyright holders. 
-See: DISCLAIMER.md
+See:**DISCLAIMER.md**
