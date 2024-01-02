@@ -1,6 +1,11 @@
-NO COPYRIGHT INFRINGEMENT INTENDED DISCLAIMER
 
-This application, flask_brown_bear, is a personal project developed for research, development, and entertainment purposes. The content within this app is inspired by the book "BROWN BEAR BROWN BEAR WHAT DO YOU SEE?" by Bill Martin Jr. and Eric Carle, and I, along with other future contributors to flask_brown_bear, want to make it clear that we do not intend to infringe upon any copyright or intellectual property rights associated with the original work.
+**
+
+## NO COPYRIGHT INFRINGEMENT INTENDED DISCLAIMER
+
+**
+
+This application, **flask_brown_bear**, is a personal project developed for research, development, and entertainment purposes. The content within this app is inspired by the book ***"BROWN BEAR BROWN BEAR WHAT DO YOU SEE?" by Bill Martin Jr. and Eric Carle***, and I, along with other future contributors to flask_brown_bear, want to make it clear that we do not intend to infringe upon any copyright or intellectual property rights associated with the original work.
 
 flask_brown_bear is our collective creative endeavor, demonstrating our technical and design skills. It is not intended for commercial use, and no profit is being generated from its distribution or usage.
 
