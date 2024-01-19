@@ -25,7 +25,7 @@ COPY --from=build /usr/local/bin/gunicorn /usr/local/bin/gunicorn
 COPY --from=build /app .
 
 # Copy the Gunicorn configuration file
-COPY --from=build /app/gunicorn_config.py .
+COPY --from=build /app/gunicorn.conf.py .
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
