@@ -10,10 +10,10 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-key-please-change-in-production')
     
     # Flask configuration
-    DEBUG = False
+    DEBUG = os.environ.get('DEBUG', 'false').lower() in ('true', '1', 't')
     TESTING = False
     
-    # Database configuration
+    # Database configuration (if used)
     DATABASE_URI = os.environ.get('DATABASE_URI', 'sqlite:///' + str(BASE_DIR / 'app.db'))
     
     # Logging configuration
@@ -22,9 +22,20 @@ class Config:
     # Application settings
     APP_NAME = os.environ.get('APP_NAME', 'Brown Bear App')
     
-    # File paths
+    # Static file handling
     STATIC_FOLDER = 'static'
     TEMPLATE_FOLDER = 'templates'
+    
+    # Security headers
+    STRICT_TRANSPORT_SECURITY = os.environ.get('STRICT_TRANSPORT_SECURITY', 'false').lower() in ('true', '1', 't')
+    CONTENT_SECURITY_POLICY = os.environ.get('CONTENT_SECURITY_POLICY')
+
+    # Ensure basic validation - these should be set in production
+    def validate(self):
+        """Validate critical configuration values."""
+        if os.environ.get('FLASK_ENV') == 'production':
+            assert self.SECRET_KEY != 'dev-key-please-change-in-production', \
+                "Production requires a real SECRET_KEY environment variable"
 
 
 class DevelopmentConfig(Config):
@@ -42,14 +53,8 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     """Production configuration."""
-    # Production should always use environment variables for sensitive config
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    DATABASE_URI = os.environ.get('DATABASE_URI')
-    
-    # Ensure these are set in production
     def __init__(self):
-        assert self.SECRET_KEY, "SECRET_KEY environment variable must be set in production"
-        assert self.DATABASE_URI, "DATABASE_URI environment variable must be set in production"
+        super().validate()
 
 
 # Configuration dictionary to easily access different configs
@@ -60,7 +65,5 @@ config = {
     'default': DevelopmentConfig
 }
 
-# Function to get configuration based on environment
 def get_config():
     env = os.environ.get('FLASK_ENV', 'default')
-    return config.get(env, config['default'])

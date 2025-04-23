@@ -45,3 +45,5 @@ coverage.xml
 
 # Gunicorn/PID files
 *.pid
+backup.sh
+restore.sh

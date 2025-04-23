@@ -1,33 +1,54 @@
-# ---- Build Stage ----
-FROM python:3.12-slim AS builder
+# Build stage
+FROM python:3.10-slim AS build
 
 WORKDIR /app
 
-# Install system deps for compiling packages
+# Install build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential && \
-    rm -rf /var/lib/apt/lists/*
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Python deps into a venv
+# Install Python dependencies
 COPY requirements.txt .
-RUN python -m venv /opt/venv && \
-    /opt/venv/bin/pip install --upgrade pip && \
-    /opt/venv/bin/pip install -r requirements.txt
+RUN pip wheel --no-cache-dir --wheel-dir /app/wheels -r requirements.txt
 
-# ---- Final Stage ----
-FROM python:3.12-slim
-
-# Set environment and copy virtual environment from builder
-ENV PATH="/opt/venv/bin:$PATH"
+# Runtime stage
+FROM python:3.10-slim
 
 WORKDIR /app
 
-# Copy the virtual environment and app code
-COPY --from=builder /opt/venv /opt/venv
+# Create non-root user
+RUN useradd -m appuser && chown -R appuser:appuser /app
+
+# Copy wheels from build stage
+COPY --from=build /app/wheels /app/wheels
+COPY --from=build /app/requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir --no-index --find-links=/app/wheels -r requirements.txt \
+    && rm -rf /app/wheels
+
+# Copy application code
 COPY . .
 
-# Expose app port
+# Set ownership
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
+USER appuser
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    FLASK_APP=run.py \
+    FLASK_ENV=production
+
+# Expose port
 EXPOSE 5000
 
-# Start the app using Gunicorn
-CMD ["gunicorn", "-c", "gunicorn.conf.py", "main.app:app"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s \
+  CMD curl -f http://localhost:5000/ || exit 1
+
+# Run with gunicorn
+CMD ["gunicorn", "--config", "gunicorn.conf.py", "run:app"]

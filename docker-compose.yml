@@ -1,14 +1,41 @@
-version: '3.9'
+version: '3.8'
 
 services:
   web:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    env_file:
-      - .env
-    restart: always
     volumes:
       - .:/app
+    env_file:
+      - .env.example  # Use .env in development, .env.example is just a template
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    command: flask run --host=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Add additional services as needed
+  # For example:
+  # db:
+  #   image: postgres:13
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   env_file:
+  #     - .env.example
+  #   environment:
+  #     - POSTGRES_PASSWORD=development_password
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_DB=app
+
+# volumes:
+#   postgres_data:

@@ -27,6 +27,11 @@ def create_app(config_class=None):
         static_folder='static',
         template_folder='templates'
     )
+
+  # Register CLI commands for administrative tasks
+    from .cli import register_commands
+    register_commands(app)
+
     
     # Apply configuration
     if config_class is None:
@@ -34,11 +39,19 @@ def create_app(config_class=None):
     else:
         app.config.from_object(config_class)
     
+    # Configure logging early
+    from .logging import configure_logging
+    configure_logging(app)
+    
+    # Register signal handlers if running directly
+    if __name__ == '__main__':
+        register_signal_handlers()
+    
     with app.app_context():
         from .routes import register_routes
         register_routes(app)
-        # If you start any long-lived threads, pass shutdown_event to them
     
+    app.logger.info("Application created and configured")
     return app
 
 # Explicitly export the register_signal_handlers function
