@@ -1,113 +1,91 @@
-
-# Flask Brown Bear App
-
-
-
-Welcome to the Flask Brown Bear app! This Flask web application is an interactive experience based on the classic children's book. It allows users to click on buttons featuring different pages of the book, accompanied by sound effects and fullscreen images.
-
-
-
-## Prerequisites
-
-
-
-Before you begin, ensure you have met the following requirements:
-
-
-
-- **Python3**: Make sure you have Python3 installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
-
-
-
-- **Flask**: This app is built with Flask. Install it using the following command:
-
-
-
-  ```bash
-
-  pip install flask
-
-
-
-## Features
-
-1. Interactive Buttons
-
-Click on buttons to explore different pages of the book, each with its unique image and sound effect.
-
-
-
-2. Fullscreen Images
-
-The app provides fullscreen images corresponding to the selected book page, creating an immersive experience.
-
-
-
-3. Sound Effects
-
-Enjoy sound effects associated with each page, enhancing the storytelling experience.
-
-
-
-
-
-## Usage
-
-**Running the Flask App**
-
-To run the Flask Brown Bear app, follow these steps:
-
-
-
-1. Clone the repository.
-
-
-
-2. Navigate to the project directory:
-
-
-
-	  ```bash
-
-	  cd flask_brown_bear
-
-
-
-3. Run the Flask app using Python3:
-
-
-
-	  ```bash	
-
-	  python3 app.py
-
-
-
-4. Open the app in your web browser at http://127.0.0.1:5000/.
-
-
-
-## Author
-
-Bill Martin Jr. / Pictures by Eric Carle
-
-
-
-## Dedication
-
-This project is dedicated to my son, Chace, who loves "Brown Bear, Brown Bear, What Do You See?" This app is a small tribute to one of his favorite books.
-
-
-
-## Contributors
-
-Contributions are welcome! If you'd like to add cool features or improvements to the Flask Brown Bear app.
-
-
-
-## Disclaimer
-
-This project is created for coding and scripting studies only. No copyright infringement is intended. The content and images used in this application are based on "Brown Bear, Brown Bear, What Do You See?" by Bill Martin Jr. and Eric Carle. All rights to the original work belong to the respective copyright holders. 
-
-See:**DISCLAIMER.md**
-
+# Flask Brown Bear 🐻
+
+[![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
+[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![12-Factor](https://img.shields.io/badge/12--factor-compliant-brightgreen.svg)](https://12factor.net/)
+
+A simple, well-structured Flask application demonstrating a book API for Eric Carle's "Brown Bear, Brown Bear, What Do You See?" Complete with Docker support, multiple deployment options, and 12-factor methodology compliance.
+
+## 📋 Features
+
+- RESTful API for the "Brown Bear" book content
+- Multiple deployment options (Flask dev server, Gunicorn, Docker)
+- Structured as a proper Python package
+- Configurable through environment variables
+- Health check endpoint
+- Clean modular architecture
+
+## 🚀 Quick Start
+
+### Running Locally
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ertwrx/flask_brown_bear.git
+   cd flask_brown_bear
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the application (choose one):
+   ```bash
+   # Option 1: Flask development server
+   flask run
+   
+   # Option 2: Using Python entrypoint
+   python run.py
+   
+   # Option 3: Using Gunicorn
+   gunicorn --bind 0.0.0.0:5000 'main:create_app()'
+   ```
+
+### Running with Docker
+
+#### Using Docker directly:
+```bash
+docker build -t flask_brown_bear .
+docker run -p 5000:5000 flask_brown_bear
+```
+
+#### Using Docker Compose:
+```bash
+docker-compose up
+```
+
+
+
+## 🔄 12-Factor Compliance
+
+This application follows the [12-Factor App](https://12factor.net/) methodology:
+
+1. **Codebase**: One codebase tracked in Git
+2. **Dependencies**: Explicitly declared in requirements.txt
+3. **Config**: Environment variable configuration
+4. **Backing Services**: Treated as attached resources
+5. **Build, Release, Run**: Strict separation of build and run stages
+6. **Processes**: Application runs as stateless processes
+7. **Port Binding**: Self-contained with port binding
+8. **Concurrency**: Scalable through process model
+9. **Disposability**: Fast startup and graceful shutdown
+10. **Dev/Prod Parity**: Keep development and production as similar as possible
+11. **Logs**: Treated as event streams
+12. **Admin Processes**: Run admin tasks as one-off processes
+
+## 📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
