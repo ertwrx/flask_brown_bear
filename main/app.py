@@ -1,16 +1,18 @@
-# This file is no longer the main entry point
-# It can be used for direct application instantiation if needed
+# main/app.py
 
-from flask import render_template
+from pathlib import Path
 from . import create_app
 
-# This is only for direct execution of this file
-# Normally, the application should be created via the factory in __init__.py
+# Flask expects `app` to be exposed at module level
 app = create_app()
 
-# No need to duplicate routes here - they should be in routes/__init__.py
-
+# This block only runs when executing this file directly (e.g. `python main/app.py`)
 if __name__ == '__main__':
-    # This is only for development convenience when running this file directly
-    # In production, the app will be served by gunicorn or similar
+    # Optional: Debug DB info when running manually
+    db_path = Path(app.config['SQLALCHEMY_DATABASE_URI'].replace('sqlite:///', ''))
+    print(f"Database file path: {db_path}")
+    print(f"Database file exists: {db_path.exists()}")
+    print(f"Database directory exists: {db_path.parent.exists()}")
+
     app.run(host='0.0.0.0', port=5000)
+

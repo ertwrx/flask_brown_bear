@@ -5,6 +5,7 @@ import signal
 import threading
 import sys
 from flask_sqlalchemy import SQLAlchemy
+from pathlib import Path
 
 # Optional: global event used by any thread-based services
 shutdown_event = threading.Event()
@@ -26,35 +27,26 @@ def register_signal_handlers():
 
 
 def create_app(config_class=None):
-    app = Flask(
-        __name__,
-        static_folder='static',
-        template_folder='templates'
-    )
+    app = Flask(__name__, static_folder='static', template_folder='templates')
 
-    # Apply configuration
-    if config_class is None:
-        app.config.from_object(get_config())
-    else:
-        app.config.from_object(config_class)
-    print(app.config)  # Print out the config to see if SQLALCHEMY_DATABASE_URI is set
+    app.config.from_object(get_config() if config_class is None else config_class)
 
-    db.init_app(app)
-
-    # Configure logging early
+    # Logging
     from .logging import configure_logging
     configure_logging(app)
 
-    # Register signal handlers if running directly
-    if __name__ == '__main__':
-        register_signal_handlers()
+    # Initialize extensions
+    db.init_app(app)
 
-    with app.app_context():
-        from .routes import register_routes
-        register_routes(app)
-        db.create_all()
+    # Register CLI, routes
+    from .cli import register_cli
+    from .routes import register_routes
+    register_cli(app)
+    register_routes(app)
 
     app.logger.info("Application created and configured")
     return app
-# Explicitly export the register_signal_handlers function
+
+
+# Explicitly export the functions and variables
 __all__ = ['create_app', 'register_signal_handlers', 'shutdown_event', 'db']
