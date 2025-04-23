@@ -47,3 +47,6 @@ coverage.xml
 *.pid
 backup.sh
 restore.sh
+check_static_db.py
+clear_static_db.py
+

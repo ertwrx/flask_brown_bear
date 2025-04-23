@@ -1,10 +1,9 @@
-function toggleFullscreen(imageName) {
-    var imageSrc = "/static/" + imageName;  // Assuming all images are in the static folder
+function toggleFullscreen(imageURL) {
     var fullscreenElement = document.createElement("div");
     fullscreenElement.classList.add("fullscreen");
 
     var imgElement = document.createElement("img");
-    imgElement.src = imageSrc;
+    imgElement.src = imageURL; // Use the URL passed from HTML
 
     fullscreenElement.appendChild(imgElement);
     document.body.appendChild(fullscreenElement);
@@ -13,6 +12,7 @@ function toggleFullscreen(imageName) {
         fullscreenElement.remove();
     }, 5000); // 5 seconds
 }
+
 function playSound(soundId) {
     var audio = document.getElementById(soundId);
     audio.play();

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('main.serve_static_from_db', filename='images/favicon.ico') }}">
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('main.serve_static_from_db', filename='js/script.js') }}"></script>
 
 
     <meta charset="UTF-8">
@@ -69,55 +69,54 @@
     </style>
 </head>
 <body>
-    <h1>BROWN BEAR, BROWN BEAR, WHAT DO YOU SEE? <img class="gif" src="{{ url_for('static', filename='see.gif') }}" alt="GIF"></h1>
+    <h1>BROWN BEAR, BROWN BEAR, WHAT DO YOU SEE? <img class="gif" src="{{ url_for('main.serve_static_from_db', filename='images/see.gif') }}" alt="GIF"></h1>
 
     <div class="button-container">
-        <button onclick="playSound('bearSound'); toggleFullscreen('Page_02.png');">
-            <img src="{{ url_for('static', filename='Page_02.png') }}" alt="Page 2">
+        <button onclick="playSound('bearSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_02.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_02.png') }}" alt="Page 2">
         </button>
-        <button onclick="playSound('birdSound'); toggleFullscreen('Page_03.png');">
-            <img src="{{ url_for('static', filename='Page_03.png') }}" alt="Page 3">
+        <button onclick="playSound('birdSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_03.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_03.png') }}" alt="Page 3">
         </button>
-        <button onclick="playSound('duckSound'); toggleFullscreen('Page_04.png');">
-            <img src="{{ url_for('static', filename='Page_04.png') }}" alt="Page 4">
+        <button onclick="playSound('duckSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_04.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_04.png') }}" alt="Page 4">
         </button>
-        <button onclick="playSound('horseSound'); toggleFullscreen('Page_05.png');">
-            <img src="{{ url_for('static', filename='Page_05.png') }}" alt="Page 5">
+        <button onclick="playSound('horseSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_05.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_05.png') }}" alt="Page 5">
         </button>
-        <button onclick="playSound('frogSound'); toggleFullscreen('Page_06.png');">
-            <img src="{{ url_for('static', filename='Page_06.png') }}" alt="Page 6">
+        <button onclick="playSound('frogSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_06.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_06.png') }}" alt="Page 6">
         </button>
     </div>
 
     <div class="button-container">
-        <button onclick="playSound('catSound'); toggleFullscreen('Page_07.png');">
-            <img src="{{ url_for('static', filename='Page_07.png') }}" alt="Page 7">
+        <button onclick="playSound('catSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_07.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_07.png') }}" alt="Page 7">
         </button>
-        <button onclick="playSound('dogSound'); toggleFullscreen('Page_08.png');">
-            <img src="{{ url_for('static', filename='Page_08.png') }}" alt="Page 8">
+        <button onclick="playSound('dogSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_08.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_08.png') }}" alt="Page 8">
         </button>
-        <button onclick="playSound('sheepSound'); toggleFullscreen('Page_09.png');">
-            <img src="{{ url_for('static', filename='Page_09.png') }}" alt="Page 9">
+        <button onclick="playSound('sheepSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_09.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_09.png') }}" alt="Page 9">
         </button>
-        <button onclick="playSound('fishSound'); toggleFullscreen('Page_10.png');">
-            <img src="{{ url_for('static', filename='Page_10.png') }}" alt="Page 10">
+        <button onclick="playSound('fishSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_10.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_10.png') }}" alt="Page 10">
         </button>
-        <button onclick="playSound('teachSound'); toggleFullscreen('Page_11.png');">
-            <img src="{{ url_for('static', filename='Page_11.png') }}" alt="Page 11">
+        <button onclick="playSound('teachSound'); toggleFullscreen('{{ url_for('main.serve_static_from_db', filename='images/Page_11.png') }}');">
+            <img src="{{ url_for('main.serve_static_from_db', filename='images/Page_11.png') }}" alt="Page 11">
         </button>
     </div>
 
-<!-- Audio elements without controls -->
-<audio id="bearSound" src="{{ url_for('static', filename='bear.mp3') }}"></audio>
-<audio id="birdSound" src="{{ url_for('static', filename='bird.mp3') }}"></audio>
-<audio id="duckSound" src="{{ url_for('static', filename='duck.mp3') }}"></audio>
-<audio id="horseSound" src="{{ url_for('static', filename='horse.mp3') }}"></audio>
-<audio id="frogSound" src="{{ url_for('static', filename='frog.mp3') }}"></audio>
-<audio id="catSound" src="{{ url_for('static', filename='cat.mp3') }}"></audio>
-<audio id="dogSound" src="{{ url_for('static', filename='dog.mp3') }}"></audio>
-<audio id="sheepSound" src="{{ url_for('static', filename='sheep.mp3') }}"></audio>
-<audio id="fishSound" src="{{ url_for('static', filename='fish.mp3') }}"></audio>
-<audio id="teachSound" src="{{ url_for('static', filename='teach.mp3') }}"></audio>
+<audio id="bearSound" src="{{ url_for('main.serve_static_from_db', filename='audio/bear.mp3') }}"></audio>
+<audio id="birdSound" src="{{ url_for('main.serve_static_from_db', filename='audio/bird.mp3') }}"></audio>
+<audio id="duckSound" src="{{ url_for('main.serve_static_from_db', filename='audio/duck.mp3') }}"></audio>
+<audio id="horseSound" src="{{ url_for('main.serve_static_from_db', filename='audio/horse.mp3') }}"></audio>
+<audio id="frogSound" src="{{ url_for('main.serve_static_from_db', filename='audio/frog.mp3') }}"></audio>
+<audio id="catSound" src="{{ url_for('main.serve_static_from_db', filename='audio/cat.mp3') }}"></audio>
+<audio id="dogSound" src="{{ url_for('main.serve_static_from_db', filename='audio/dog.mp3') }}"></audio>
+<audio id="sheepSound" src="{{ url_for('main.serve_static_from_db', filename='audio/sheep.mp3') }}"></audio>
+<audio id="fishSound" src="{{ url_for('main.serve_static_from_db', filename='audio/fish.mp3') }}"></audio>
+<audio id="teachSound" src="{{ url_for('main.serve_static_from_db', filename='audio/teach.mp3') }}"></audio>
 
 
     <div class="author-info">
@@ -126,4 +125,3 @@
 
 
 </body>
-</html>
