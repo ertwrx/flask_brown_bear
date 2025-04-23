@@ -1,28 +1,30 @@
-version: '3.8'
-
-services:
-  web:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
-    env_file:
-      - .env.example  # Use .env in development, .env.example is just a template
-    environment:
-      - FLASK_APP=run.py
-      - FLASK_ENV=development
-      - FLASK_DEBUG=1
-    command: flask run --host=0.0.0.0
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 5s
+        services:
+          web:
+            build: .
+            ports:
+              - "5000:5000"
+            volumes:
+              - .:/app
+            env_file:
+              - .env
+            environment:
+              - FLASK_APP=run.py
+              - FLASK_ENV=development
+              - FLASK_DEBUG=1
+            command: gunicorn -w 2 --timeout 30 -b 0.0.0.0:5000 main.app:app
+            restart: unless-stopped
+            stop_grace_period: 20s
+            healthcheck:
+              test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+              interval: 30s
+              timeout: 10s
+              retries: 3
+              start_period: 5s
+            deploy:
+              resources:
+                limits:
+                  cpus: '1'
+                  memory: 1GB
 
   # Add additional services as needed
   # For example:
