@@ -21,13 +21,13 @@ A simple, well-structured Flask application demonstrating a book API for Eric Ca
 
 ### Running Locally
 
-1. Clone the repository:
+1.🐏 Clone the repository:
    ```bash
    git clone https://github.com/ertwrx/flask_brown_bear.git
    cd flask_brown_bear
    ```
 
-2. Create and activate a virtual environment:
+2.🏞️ Create and activate a virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -38,7 +38,7 @@ A simple, well-structured Flask application demonstrating a book API for Eric Ca
    pip install -r requirements.txt
    ```
 
-4. Run the application (choose one):
+4. Run the application (choose one⚗️🐍🦄):
    ```bash
    # Option 1: Flask development server
    flask run
@@ -50,7 +50,7 @@ A simple, well-structured Flask application demonstrating a book API for Eric Ca
    gunicorn --bind 0.0.0.0:5000 'main:create_app()'
    ```
 
-### Running with Docker
+### 🐋Running with Docker
 
 #### Using Docker directly:
 ```bash
@@ -58,7 +58,7 @@ docker build -t flask_brown_bear .
 docker run -p 5000:5000 flask_brown_bear
 ```
 
-#### Using Docker Compose:
+#### 🐙Using Docker Compose:
 ```bash
 docker-compose up
 ```
