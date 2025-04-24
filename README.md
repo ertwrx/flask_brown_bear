@@ -21,13 +21,13 @@ A simple, well-structured Flask application demonstrating a book API for Eric Ca
 
 ### Running Locally
 
-1.🐏 Clone the repository:
+1. 🐏 Clone the repository:
    ```bash
    git clone https://github.com/ertwrx/flask_brown_bear.git
    cd flask_brown_bear
    ```
 
-2.🏞️ Create and activate a virtual environment:
+2. Create and activate a virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -63,6 +63,56 @@ docker run -p 5000:5000 flask_brown_bear
 docker-compose up
 ```
 
+## Administrative Tools
+
+### Using admin.py
+
+The `admin.py` script provides administrative commands for managing the application following the 12-factor app methodology. It lets you perform maintenance tasks using the same codebase and environment as the main application.
+
+Available commands:
+
+```bash
+# Initialize the database tables
+python admin.py db:init
+
+# Seed the database with sample data (book pages and animals)
+python admin.py db:seed
+
+# Reset the database (WARNING: destroys all data)
+python admin.py db:reset
+
+# Backup the database to a timestamped file in the backups directory
+python admin.py db:backup
+
+# Restore the database from a previous backup
+python admin.py db:restore
+
+# Check and validate application configuration
+python admin.py check:config
+
+# Run application health checks
+python admin.py health:check
+
+# Clear application caches
+python admin.py cache:clear
+```
+
+### Using generate_key.py
+
+The `generate_key.py` script creates a secure random secret key for your Flask application.
+
+```bash
+# Generate a new secret key
+python generate_key.py
+
+# The script will output a secure random key that you can add to your .env file
+# Example output:
+# Generated SECRET_KEY: fT5cUq8lKJr0e3iYbHx2vPzN7wDmVgS9
+# Add this to your .env file:
+# SECRET_KEY=fT5cUq8lKJr0e3iYbHx2vPzN7wDmVgS9
+```
+
+After running the script, copy the generated key and add it to your `.env` file or environment variables.
 
 
 ## 🔄 12-Factor Compliance
