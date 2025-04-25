@@ -1,5 +1,17 @@
 # 🐻 Flask Brown Bear
 
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-2.3+-green.svg)](https://flask.palletsprojects.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![Docker Image](https://img.shields.io/badge/Docker_Image-v3-blue.svg)](https://hub.docker.com/r/ertwrx/flask_brown_bear)
+[![Gunicorn](https://img.shields.io/badge/Gunicorn-21.2.0-green.svg)](https://gunicorn.org/)
+[![12 Factor App](https://img.shields.io/badge/12--Factor-Compliant-brightgreen.svg)](https://12factor.net/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Interactive](https://img.shields.io/badge/Interactive-Yes-success.svg)]()
+[![Kids Friendly](https://img.shields.io/badge/Kids_Friendly-Yes-ff69b4.svg)]()
+
+
+
 A Flask web application based on Eric Carle's classic children's book "Brown Bear, Brown Bear, What Do You See?". This interactive app was created as a dedication to my son, for whom this is a beloved favorite book.
 
 ![Flask Brown Bear](static/images/brown_bear.jpg)
@@ -60,7 +72,7 @@ gunicorn --bind 0.0.0.0:5000 'main:create_app()'
 
 ```bash
 docker build -t flask_brown_bear .
-docker run -p 5000:5000 flask_brown_bear
+docker run -p 5000:5000 -e FLASK_ENV=development flask_brown_bear
 ```
 
 **🐙 Using Docker Compose:**
