@@ -50,3 +50,4 @@ restore.sh
 check_static_db.py
 clear_static_db.py
 
+upload_static_files.py
